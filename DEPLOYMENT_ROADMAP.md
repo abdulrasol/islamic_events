@@ -18,7 +18,7 @@ Before deploying, ensure you have:
 **Cons**: Public repository required (for free tier)  
 **Best for**: Open-source projects, personal portfolios
 
-#### Steps
+#### Steps for GitHub Pages
 
 1. **Push Your Code to GitHub**
 
@@ -59,7 +59,7 @@ Before deploying, ensure you have:
 **Cons**: 100GB bandwidth limit (free tier)  
 **Best for**: Production apps with custom domains
 
-#### Steps
+#### Steps for Netlify
 
 1. **Create Netlify Account**
    - Go to [netlify.com](https://netlify.com)
@@ -72,7 +72,7 @@ Before deploying, ensure you have:
 
 3. **Configure Build Settings**
 
-   ```
+   ```text
    Build command: (leave empty)
    Publish directory: ./
    ```
@@ -105,7 +105,7 @@ Before deploying, ensure you have:
 **Cons**: More complex configuration for some features  
 **Best for**: High-traffic applications
 
-#### Steps
+#### Steps for Vercel
 
 1. **Create Vercel Account**
    - Go to [vercel.com](https://vercel.com)
@@ -117,7 +117,7 @@ Before deploying, ensure you have:
 
 3. **Configure Project**
 
-   ```
+   ```text
    Framework Preset: Other
    Root Directory: ./
    Build Command: (leave empty)
@@ -230,7 +230,7 @@ After deployment, verify:
 ## 📊 Comparison Table
 
 | Feature | GitHub Pages | Netlify | Vercel |
-|---------|-------------|---------|--------|
+| :--- | :--- | :--- | :--- |
 | **Setup Time** | 5 min | 3 min | 2 min |
 | **Bandwidth** | 100GB/month | 100GB/month | Unlimited |
 | **Custom Domain** | ✅ Free | ✅ Free | ✅ Free |
@@ -267,13 +267,13 @@ After deployment, verify:
 
 ### GitHub Pages
 
-```
+```text
 https://YOUR_USERNAME.github.io/islamic_events/
 ```
 
 ### Netlify
 
-```
+```text
 https://islamic-events.netlify.app
 or
 https://your-custom-domain.com
@@ -281,7 +281,7 @@ https://your-custom-domain.com
 
 ### Vercel
 
-```
+```text
 https://islamic-events.vercel.app
 or
 https://your-custom-domain.com

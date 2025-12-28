@@ -19,7 +19,7 @@ A beautiful, modern web application for browsing Islamic (Shia) events throughou
 
 - **GitHub Pages**: `https://YOUR_USERNAME.github.io/islamic_events/`
 - **Netlify**: `https://islamic-events.netlify.app`
-- **Vercel**: `https://islamic-events.vercel.app`
+- **Vercel**: `https://islamicevent-wheat.vercel.app/`
 
 ## 📦 Quick Start
 
@@ -54,7 +54,7 @@ A beautiful, modern web application for browsing Islamic (Shia) events throughou
 
 3. **Open your browser**
 
-   ```
+   ```bash
    http://localhost:8000
    ```
 
@@ -94,7 +94,7 @@ const event = await islamicEventsAPI.getEventById(4);
 
 ## 🗂️ Project Structure
 
-```
+```text
 islamic_events/
 ├── index.html              # Main HTML file
 ├── styles.css              # Styling with CSS variables
