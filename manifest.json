@@ -1,0 +1,27 @@
+{
+    "name": "Islamic Events Calendar",
+    "short_name": "Events",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#1a5f3f",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>",
+            "type": "image/svg+xml",
+            "sizes": "any",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "https://placehold.co/192x192/1a5f3f/ffffff?text=🌙",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "https://placehold.co/512x512/1a5f3f/ffffff?text=🌙",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+}

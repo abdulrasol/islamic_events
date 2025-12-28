@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Islamic Events Calendar - Shia Islamic events throughout the year">
     <meta name="keywords" content="Islamic Calendar, Shia Events, Islamic Occasions, Islamic Dates">
     <meta name="author" content="Islamic Events">
-    
+
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Islamic Events Calendar">
     <meta property="og:description" content="Comprehensive calendar of Shia Islamic events">
     <meta property="og:type" content="website">
-    
+
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
-    
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
+
     <title>Islamic Events Calendar | التقويم الإسلامي</title>
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="./styles.css">
-    
+
     <!-- Google Fonts - Arabic/Farsi Support -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
+
 <body x-data="app" :class="{ 'dark-mode': darkMode }" :dir="currentLang === 'ar' ? 'rtl' : 'rtl'">
-    
+
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -38,15 +43,21 @@
                     <span class="logo-icon">🌙</span>
                     <h1 x-text="t('app_name')">التقويم الإسلامي</h1>
                 </div>
-                
+
                 <div class="header-actions">
+                    <!-- Install PWA Button -->
+                    <button @click="installPWA" x-show="deferredPrompt" class="btn-icon" title="Install App">
+                        <span>⬇️</span>
+                    </button>
+
                     <!-- Language Switcher -->
                     <button @click="toggleLanguage" class="btn-icon" :title="t('language')">
                         <span x-text="currentLang === 'ar' ? 'فا' : 'عر'"></span>
                     </button>
-                    
+
                     <!-- Dark Mode Toggle -->
-                    <button @click="darkMode = !darkMode" class="btn-icon" :title="darkMode ? t('light_mode') : t('dark_mode')">
+                    <button @click="darkMode = !darkMode" class="btn-icon"
+                        :title="darkMode ? t('light_mode') : t('dark_mode')">
                         <span x-show="!darkMode">🌙</span>
                         <span x-show="darkMode">☀️</span>
                     </button>
@@ -58,28 +69,19 @@
     <!-- Main Content -->
     <main class="main">
         <div class="container">
-            
+
             <!-- Search and Filters -->
             <section class="search-section">
                 <div class="search-box">
-                    <input 
-                        type="text" 
-                        x-model="searchQuery"
-                        @input="handleSearch"
-                        :placeholder="t('search_placeholder')"
-                        class="search-input"
-                    >
+                    <input type="text" x-model="searchQuery" @input="handleSearch"
+                        :placeholder="t('search_placeholder')" class="search-input">
                     <button @click="handleSearch" class="btn-primary">
                         <span x-text="t('search_button')">بحث</span>
                     </button>
-                    <button 
-                        x-show="searchQuery" 
-                        @click="clearSearch" 
-                        class="btn-secondary"
-                        x-text="t('clear_search')">
+                    <button x-show="searchQuery" @click="clearSearch" class="btn-secondary" x-text="t('clear_search')">
                     </button>
                 </div>
-                
+
                 <div class="filters">
                     <div class="filter-group">
                         <label x-text="t('filter_by_month')">تصفية حسب الشهر</label>
@@ -90,7 +92,7 @@
                             </template>
                         </select>
                     </div>
-                    
+
                     <div class="filter-group">
                         <label x-text="t('filter_by_type')">تصفية حسب النوع</label>
                         <select x-model="selectedType" @change="applyFilters" class="filter-select">
@@ -105,7 +107,7 @@
 
             <!-- Events Count -->
             <div class="events-count">
-                <span x-text="t('total_events')">مجموع الأحداث</span>: 
+                <span x-text="t('total_events')">مجموع الأحداث</span>:
                 <strong x-text="filteredEvents.length">0</strong>
             </div>
 
@@ -116,31 +118,25 @@
                         <p x-text="t('no_events_found')">لم يتم العثور على أحداث</p>
                     </div>
                 </template>
-                
+
                 <template x-for="event in filteredEvents" :key="event.id">
-                    <article 
-                        class="event-card"
-                        :class="'event-' + getEventTypeClass(event.type_ar)"
-                        @click="openEventModal(event)"
-                    >
+                    <article class="event-card" :class="'event-' + getEventTypeClass(event.type_ar)"
+                        @click="openEventModal(event)">
                         <div class="event-date">
                             <span class="event-day" x-text="event.day"></span>
-                            <span class="event-month" x-text="currentLang === 'ar' ? event.month_name_ar : translations[currentLang].months[event.month]"></span>
+                            <span class="event-month"
+                                x-text="currentLang === 'ar' ? event.month_name_ar : translations[currentLang].months[event.month]"></span>
                         </div>
-                        
+
                         <div class="event-content">
                             <h3 class="event-title" x-text="currentLang === 'ar' ? event.name : event.name_en"></h3>
                             <p class="event-description" x-text="truncate(event.description, 100)"></p>
-                            
+
                             <div class="event-meta">
-                                <span 
-                                    class="event-type-badge" 
-                                    :class="'badge-' + getEventTypeClass(event.type_ar)"
+                                <span class="event-type-badge" :class="'badge-' + getEventTypeClass(event.type_ar)"
                                     x-text="currentLang === 'ar' ? event.type_ar : event.type_en">
                                 </span>
-                                <span 
-                                    class="event-importance"
-                                    :class="'importance-' + event.importance"
+                                <span class="event-importance" :class="'importance-' + event.importance"
                                     x-text="t('importance_levels.' + event.importance)">
                                 </span>
                             </div>
@@ -158,45 +154,39 @@
     </main>
 
     <!-- Event Detail Modal -->
-    <div 
-        x-show="selectedEvent" 
-        @click.self="closeEventModal"
-        class="modal-overlay"
-        x-transition
-    >
+    <div x-show="selectedEvent" @click.self="closeEventModal" class="modal-overlay" x-transition>
         <div class="modal-content" @click.stop>
             <button @click="closeEventModal" class="modal-close">✕</button>
-            
+
             <template x-if="selectedEvent">
                 <div class="modal-body">
                     <div class="modal-header">
                         <div class="modal-date">
                             <span class="modal-day" x-text="selectedEvent.day"></span>
-                            <span class="modal-month" x-text="currentLang === 'ar' ? selectedEvent.month_name_ar : translations[currentLang].months[selectedEvent.month]"></span>
+                            <span class="modal-month"
+                                x-text="currentLang === 'ar' ? selectedEvent.month_name_ar : translations[currentLang].months[selectedEvent.month]"></span>
                         </div>
                         <h2 x-text="currentLang === 'ar' ? selectedEvent.name : selectedEvent.name_en"></h2>
                     </div>
-                    
+
                     <div class="modal-details">
                         <div class="detail-row">
                             <strong x-text="t('event_type')">نوع الحدث</strong>
-                            <span 
-                                class="event-type-badge" 
-                                :class="'badge-' + getEventTypeClass(selectedEvent.type_ar)"
+                            <span class="event-type-badge" :class="'badge-' + getEventTypeClass(selectedEvent.type_ar)"
                                 x-text="currentLang === 'ar' ? selectedEvent.type_ar : selectedEvent.type_en">
                             </span>
                         </div>
-                        
+
                         <div class="detail-row">
                             <strong x-text="t('importance')">الأهمية</strong>
                             <span x-text="t('importance_levels.' + selectedEvent.importance)"></span>
                         </div>
-                        
+
                         <div class="detail-row" x-show="selectedEvent.year_of_occurrence">
                             <strong x-text="t('year_of_occurrence')">سنة الوقوع</strong>
                             <span x-text="selectedEvent.year_of_occurrence + ' هـ'"></span>
                         </div>
-                        
+
                         <div class="detail-description">
                             <strong x-text="t('description')">الوصف</strong>
                             <p x-text="selectedEvent.description"></p>
@@ -217,5 +207,11 @@
     <!-- Scripts -->
     <script src="./api.js"></script>
     <script src="./app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js'));
+        }
+    </script>
 </body>
+
 </html>
