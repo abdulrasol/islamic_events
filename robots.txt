@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://islamicevent-wheat.vercel.app/sitemap.xml
